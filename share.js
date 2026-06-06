@@ -143,7 +143,7 @@ module.exports = async function handler(req, res) {
 <body>
     <div class="redirect-box">
         <div class="spinner"></div>
-        <h2>Redirecting you to Roryaskme...</h2>
+        <h2>Redirecting you to RORYASKME...</h2>
         <p>If you are not redirected automatically, <a href="${redirectUrl}" style="color: #ff69b4; font-weight: 700; text-decoration: none;">click here</a>.</p>
     </div>
     

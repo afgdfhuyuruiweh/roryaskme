@@ -258,7 +258,7 @@ if (window.FIREBASE_CONFIG && window.FIREBASE_CONFIG.apiKey) {
                     id: "owner_rue",
                     handle: "wlwruweh",
                     displayName: "rue",
-                    bio: "⊹₊˚‧︵‿₊୨ᰔ Roryaskme! ᰔ ୧₊‿︵‧˚₊⊹\n╰┈➤ Rue’s official digital fallout shelter.\n\n.ᐟ Welcome! I’m Rue—part-time AU enthusiast, full-time struggling uni student, and professional multi-shipper XD. 𐔌՞. .՞𐦯 I spend 90% of my time writing alternative universes and 10% fighting for my life sa uni para lang tumagos. My shipping tastes are \"yes,\" and my fandoms are \"all of them.\"\n\n⤹⤷ System Log: This page is my digital fallout shelter in case revospring pulls a cc and crashes permanently, since the internet loves deleting our favorite Q&A sites. Feed my inbox with prompts, questions, or your favorite ships before the servers realize I'm here! 𑣲⋆",
+                    bio: "⊹₊˚‧︵‿₊୨ᰔ RORYASKME! ᰔ ୧₊‿︵‧˚₊⊹\n╰┈➤ Rue’s official digital fallout shelter.\n\n.ᐟ Welcome! I’m Rue—part-time AU enthusiast, full-time struggling uni student, and professional multi-shipper XD. 𐔌՞. .՞𐦯 I spend 90% of my time writing alternative universes and 10% fighting for my life sa uni para lang tumagos. My shipping tastes are \"yes,\" and my fandoms are \"all of them.\"\n\n⤹⤷ System Log: This page is my digital fallout shelter in case revospring pulls a cc and crashes permanently, since the internet loves deleting our favorite Q&A sites. Feed my inbox with prompts, questions, or your favorite ships before the servers realize I'm here! 𑣲⋆",
                     sidebarBio: "rue 20+\nshe/her\nhonyeitsu on tiktok\nwriting only for every ship that i love",
                     theme: "sakura",
                     allowAnonymous: true,
