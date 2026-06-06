@@ -254,13 +254,13 @@ class DBService {
     }
 
     deleteQuestion(questionId) {
-        if (window.FIREBASE_ACTIVE && window.firebaseDeleteQuestion) {
-            window.firebaseDeleteQuestion(questionId);
-            return;
-        }
         let questions = this.getQuestions();
         questions = questions.filter(q => q.id !== questionId);
         localStorage.setItem("pinkspring_questions", JSON.stringify(questions));
+
+        if (window.FIREBASE_ACTIVE && window.firebaseDeleteQuestion) {
+            window.firebaseDeleteQuestion(questionId);
+        }
     }
 
     likeAnswer(questionId, visitorSessionId) {

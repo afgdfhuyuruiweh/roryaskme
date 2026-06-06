@@ -58,9 +58,14 @@ Hello! I'm Rue, a passionate AU writer who sometimes plays around with code. �
 Note: This page serves as a backup for my revospring account, just in case it shutdowns (like what happened to Curious Cat!). Feel free to ask me anything here! 🎀</div>
                 
                 <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 12px;">
-                    <button class="btn-primary" id="btn-landing-login" style="padding: 12px 36px; font-size: 1.1rem; border-radius: 30px; font-weight: 700; cursor: pointer; transition: all 0.2s;">
-                        sign in as rue
-                    </button>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; width: 100%;">
+                        <button class="btn-primary" id="btn-landing-login" style="padding: 12px 36px; font-size: 1.1rem; border-radius: 30px; font-weight: 700; cursor: pointer; transition: all 0.2s;">
+                            sign in as rue
+                        </button>
+                        <a href="#u/wlwruweh" id="btn-landing-profile" class="btn-secondary" style="padding: 12px 36px; font-size: 1.1rem; border-radius: 30px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;">
+                            see rue's profile
+                        </a>
+                    </div>
                     <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 8px; font-weight: 600;">
                         ✨ The first Google account to sign in will claim sole ownership of this Roryaskme Q&A space.
                     </p>
@@ -373,8 +378,9 @@ Note: This page serves as a backup for my revospring account, just in case it sh
                             <div class="form-group">
                                 <label>Select Theme Palette</label>
                                 <div class="theme-selector-grid">
+                                    <!-- PINK THEMES -->
                                     <div class="theme-card glass-panel active" data-theme-id="sakura">
-                                        <div style="font-weight: 700; font-size: 0.95rem;">Sakura Soft (Light)</div>
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Sakura Soft (Pink)</div>
                                         <div class="theme-palette">
                                             <div class="color-dot" style="background: #ffeef2;"></div>
                                             <div class="color-dot" style="background: #ff69b4;"></div>
@@ -382,7 +388,7 @@ Note: This page serves as a backup for my revospring account, just in case it sh
                                         </div>
                                     </div>
                                     <div class="theme-card glass-panel" data-theme-id="bubblegum">
-                                        <div style="font-weight: 700; font-size: 0.95rem;">Bubblegum Pop (Bright)</div>
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Bubblegum Pop</div>
                                         <div class="theme-palette">
                                             <div class="color-dot" style="background: #fff0f6;"></div>
                                             <div class="color-dot" style="background: #ff1493;"></div>
@@ -390,7 +396,7 @@ Note: This page serves as a backup for my revospring account, just in case it sh
                                         </div>
                                     </div>
                                     <div class="theme-card glass-panel" data-theme-id="cyber">
-                                        <div style="font-weight: 700; font-size: 0.95rem;">Cyber Magenta (Dark)</div>
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Cyber Pink (Dark)</div>
                                         <div class="theme-palette">
                                             <div class="color-dot" style="background: #0f050b;"></div>
                                             <div class="color-dot" style="background: #ff2a85;"></div>
@@ -398,7 +404,7 @@ Note: This page serves as a backup for my revospring account, just in case it sh
                                         </div>
                                     </div>
                                     <div class="theme-card glass-panel" data-theme-id="rose-quartz">
-                                        <div style="font-weight: 700; font-size: 0.95rem;">Rose Quartz (Warm Dark)</div>
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Rose Quartz (Dark)</div>
                                         <div class="theme-palette">
                                             <div class="color-dot" style="background: #1f1418;"></div>
                                             <div class="color-dot" style="background: #eb96af;"></div>
@@ -406,7 +412,7 @@ Note: This page serves as a backup for my revospring account, just in case it sh
                                         </div>
                                     </div>
                                     <div class="theme-card glass-panel" data-theme-id="ballet-slipper">
-                                        <div style="font-weight: 700; font-size: 0.95rem;">Ballet Slipper (Pale)</div>
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Ballet Slipper</div>
                                         <div class="theme-palette">
                                             <div class="color-dot" style="background: #fff5f6;"></div>
                                             <div class="color-dot" style="background: #f4c2c2;"></div>
@@ -414,7 +420,7 @@ Note: This page serves as a backup for my revospring account, just in case it sh
                                         </div>
                                     </div>
                                     <div class="theme-card glass-panel" data-theme-id="strawberry-milk">
-                                        <div style="font-weight: 700; font-size: 0.95rem;">Strawberry Milk (Pastel)</div>
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Strawberry Milk</div>
                                         <div class="theme-palette">
                                             <div class="color-dot" style="background: #fff2f5;"></div>
                                             <div class="color-dot" style="background: #ff85a1;"></div>
@@ -422,11 +428,311 @@ Note: This page serves as a backup for my revospring account, just in case it sh
                                         </div>
                                     </div>
                                     <div class="theme-card glass-panel" data-theme-id="hot-magenta">
-                                        <div style="font-weight: 700; font-size: 0.95rem;">Hot Magenta (Neon)</div>
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Hot Magenta (Dark)</div>
                                         <div class="theme-palette">
                                             <div class="color-dot" style="background: #2b001a;"></div>
                                             <div class="color-dot" style="background: #ff007f;"></div>
                                             <div class="color-dot" style="background: rgba(255, 0, 127, 0.12);"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- PURPLE THEMES -->
+                                    <div class="theme-card glass-panel" data-theme-id="lavender">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Lavender Haze</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #f3efff;"></div>
+                                            <div class="color-dot" style="background: #8a2be2;"></div>
+                                            <div class="color-dot" style="background: #f0e6ff;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="amethyst">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Amethyst (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #090214;"></div>
+                                            <div class="color-dot" style="background: #b886fd;"></div>
+                                            <div class="color-dot" style="background: rgba(184, 134, 253, 0.12);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="grape">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Grape Soda</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #f7e6ff;"></div>
+                                            <div class="color-dot" style="background: #ba55d3;"></div>
+                                            <div class="color-dot" style="background: #faebff;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="plum">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Royal Plum (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #100215;"></div>
+                                            <div class="color-dot" style="background: #dda0dd;"></div>
+                                            <div class="color-dot" style="background: rgba(221, 160, 221, 0.1);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="neon-violet">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Neon Violet (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #0b001a;"></div>
+                                            <div class="color-dot" style="background: #9400d3;"></div>
+                                            <div class="color-dot" style="background: rgba(148, 0, 211, 0.15);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="lilac">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Lilac Dream</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #f8f6fc;"></div>
+                                            <div class="color-dot" style="background: #b19ffb;"></div>
+                                            <div class="color-dot" style="background: #f4f0ff;"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- RED THEMES -->
+                                    <div class="theme-card glass-panel" data-theme-id="crimson">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Crimson Velvet (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #150005;"></div>
+                                            <div class="color-dot" style="background: #dc143c;"></div>
+                                            <div class="color-dot" style="background: rgba(220, 20, 60, 0.12);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="cherry">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Cherry Blossom</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #fff0f1;"></div>
+                                            <div class="color-dot" style="background: #ff5a5f;"></div>
+                                            <div class="color-dot" style="background: #ffd6da;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="scarlet">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Scarlet Neon (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #0f0002;"></div>
+                                            <div class="color-dot" style="background: #ff0037;"></div>
+                                            <div class="color-dot" style="background: rgba(255, 0, 55, 0.12);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="ruby">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Ruby Jewel (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #180003;"></div>
+                                            <div class="color-dot" style="background: #e0115f;"></div>
+                                            <div class="color-dot" style="background: rgba(224, 17, 95, 0.1);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="rose-petal">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Rose Petal</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #fff5f5;"></div>
+                                            <div class="color-dot" style="background: #f43f5e;"></div>
+                                            <div class="color-dot" style="background: #ffe4e6;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="lava">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Lava Flow (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #120100;"></div>
+                                            <div class="color-dot" style="background: #ff4500;"></div>
+                                            <div class="color-dot" style="background: rgba(255, 69, 0, 0.12);"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- YELLOW THEMES -->
+                                    <div class="theme-card glass-panel" data-theme-id="lemon">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Lemon Meringue</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #fffbeb;"></div>
+                                            <div class="color-dot" style="background: #d97706;"></div>
+                                            <div class="color-dot" style="background: #fef3c7;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="honey">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Wild Honey (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #120b02;"></div>
+                                            <div class="color-dot" style="background: #f59e0b;"></div>
+                                            <div class="color-dot" style="background: rgba(245, 158, 11, 0.12);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="banana">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Banana Split</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #fffdf2;"></div>
+                                            <div class="color-dot" style="background: #eab308;"></div>
+                                            <div class="color-dot" style="background: #fffde6;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="marigold">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Golden Marigold</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #fffbeb;"></div>
+                                            <div class="color-dot" style="background: #f59e0b;"></div>
+                                            <div class="color-dot" style="background: #fef3c7;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="amber">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Warm Amber (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #140700;"></div>
+                                            <div class="color-dot" style="background: #f59e0b;"></div>
+                                            <div class="color-dot" style="background: rgba(245, 158, 11, 0.10);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="daisy">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Sweet Daisy</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #fffdf5;"></div>
+                                            <div class="color-dot" style="background: #eab308;"></div>
+                                            <div class="color-dot" style="background: #fef9c3;"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- ORANGE THEMES -->
+                                    <div class="theme-card glass-panel" data-theme-id="sunset">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Sunset Glow</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #fff2eb;"></div>
+                                            <div class="color-dot" style="background: #ff7f50;"></div>
+                                            <div class="color-dot" style="background: #ffebe0;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="autumn">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Autumn Maple (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #140501;"></div>
+                                            <div class="color-dot" style="background: #f97316;"></div>
+                                            <div class="color-dot" style="background: rgba(249, 115, 22, 0.12);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="tangerine">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Tangerine Dream</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #fff5f0;"></div>
+                                            <div class="color-dot" style="background: #fb923c;"></div>
+                                            <div class="color-dot" style="background: #ffdec9;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="apricot">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Apricot Sorbet</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #fffaf6;"></div>
+                                            <div class="color-dot" style="background: #f97316;"></div>
+                                            <div class="color-dot" style="background: #ffedd5;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="coral">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Electric Coral</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #fff1f0;"></div>
+                                            <div class="color-dot" style="background: #f87171;"></div>
+                                            <div class="color-dot" style="background: #fee2e2;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="rust">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Rust Terracotta (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #140501;"></div>
+                                            <div class="color-dot" style="background: #c2410c;"></div>
+                                            <div class="color-dot" style="background: rgba(194, 65, 12, 0.10);"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- GREEN THEMES -->
+                                    <div class="theme-card glass-panel" data-theme-id="matcha">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Mint Matcha</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #f0fdf4;"></div>
+                                            <div class="color-dot" style="background: #16a34a;"></div>
+                                            <div class="color-dot" style="background: #dcfce7;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="forest">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Forest Canopy (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #030a05;"></div>
+                                            <div class="color-dot" style="background: #22c55e;"></div>
+                                            <div class="color-dot" style="background: rgba(34, 197, 94, 0.1);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="lime">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Key Lime</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #f7fee7;"></div>
+                                            <div class="color-dot" style="background: #84cc16;"></div>
+                                            <div class="color-dot" style="background: #f0fdf4;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="emerald">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Emerald Gem (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #010a05;"></div>
+                                            <div class="color-dot" style="background: #10b981;"></div>
+                                            <div class="color-dot" style="background: rgba(16, 185, 129, 0.1);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="mint">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Cool Eucalyptus</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #f0fdfa;"></div>
+                                            <div class="color-dot" style="background: #0d9488;"></div>
+                                            <div class="color-dot" style="background: #ccfbf1;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="pistachio">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Pistachio Cream</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #f5fbeb;"></div>
+                                            <div class="color-dot" style="background: #84cc16;"></div>
+                                            <div class="color-dot" style="background: #ecfccb;"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- BLUE THEMES -->
+                                    <div class="theme-card glass-panel" data-theme-id="ocean">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Ocean Breeze</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #e0f2fe;"></div>
+                                            <div class="color-dot" style="background: #0284c7;"></div>
+                                            <div class="color-dot" style="background: #bae6fd;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="midnight">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Midnight Neon (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #010814;"></div>
+                                            <div class="color-dot" style="background: #1e90ff;"></div>
+                                            <div class="color-dot" style="background: rgba(30, 144, 255, 0.12);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="periwinkle">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Periwinkle</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #f0f4ff;"></div>
+                                            <div class="color-dot" style="background: #6366f1;"></div>
+                                            <div class="color-dot" style="background: #eef2ff;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="sky">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Summer Sky</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #f0f9ff;"></div>
+                                            <div class="color-dot" style="background: #38bdf8;"></div>
+                                            <div class="color-dot" style="background: #e0f2fe;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="sapphire">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Sapphire Gem (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #010514;"></div>
+                                            <div class="color-dot" style="background: #2563eb;"></div>
+                                            <div class="color-dot" style="background: rgba(37, 99, 235, 0.10);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="teal">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Teal Glow (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #010a0a;"></div>
+                                            <div class="color-dot" style="background: #0d9488;"></div>
+                                            <div class="color-dot" style="background: rgba(20, 184, 166, 0.25);"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -521,6 +827,9 @@ Note: This page serves as a backup for my revospring account, just in case it sh
     <!-- Firebase Real-time Connectors -->
     <script src="firebase-config.js"></script>
     <script type="module" src="firebase-sync.js"></script>
+
+    <!-- Twemoji Library for Consistent iOS Emojis -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/twemoji.min.js" crossorigin="anonymous"></script>
 
     <!-- MAIN LOGIC SCRIPTS -->
     <script src="db.js"></script>

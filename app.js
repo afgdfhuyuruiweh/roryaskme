@@ -6,6 +6,32 @@ let activePublicTab = 'answers'; // answers, posts
 let activeAskMode = 'write-post'; // write-post, ask-question
 let activeQuoteItem = null;
 
+// --- UTILITY: RENDER CONSISTENT IOS EMOJIS VIA TWEMOJI & APPLE EMOJI DATASOURCE ---
+function applyIosEmojis(target) {
+    if (typeof twemoji === 'undefined') return;
+    const el = typeof target === 'string' ? document.getElementById(target) : target;
+    if (!el) return;
+    twemoji.parse(el, {
+        callback: (iconId) => `https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/${iconId}.png`
+    });
+}
+
+// Global capture-phase error listener for emoji images to handle variation selector mismatches (e.g., 2764.png vs 2764-fe0f.png)
+window.addEventListener('error', (e) => {
+    if (e.target && e.target.tagName === 'IMG' && e.target.classList.contains('emoji')) {
+        const img = e.target;
+        if (!img.getAttribute('data-fallback')) {
+            img.setAttribute('data-fallback', 'true');
+            const src = img.src;
+            if (src.includes('-fe0f.png')) {
+                img.src = src.replace('-fe0f.png', '.png');
+            } else if (src.includes('.png')) {
+                img.src = src.replace('.png', '-fe0f.png');
+            }
+        }
+    }
+}, true);
+
 // --- UTILITY: VISITOR SESSION ID FOR LIKES ---
 function getVisitorSessionId() {
     let visitorId = localStorage.getItem("pinkspring_visitor_id");
@@ -87,6 +113,7 @@ function showToast(message, type = 'info') {
     
     toast.className = `toast active ${type}`;
     toastMsg.textContent = message;
+    applyIosEmojis(toastMsg);
     
     setTimeout(() => {
         toast.className = 'toast';
@@ -166,12 +193,15 @@ function openShareModal(type, data = null) {
     document.getElementById('share-preview-avatar').src = user.avatar;
     document.getElementById('share-preview-name').textContent = user.displayName;
     document.getElementById('share-preview-handle').textContent = `@${user.handle}`;
+    applyIosEmojis('share-preview-name');
     
     // Populate Link Card inside Post Preview
     const cardBannerEl = document.getElementById('share-preview-card-banner');
     applyHeaderBanner(cardBannerEl, cardBanner);
     document.getElementById('share-preview-card-title').textContent = cardTitle;
     document.getElementById('share-preview-card-desc').textContent = cardDesc;
+    applyIosEmojis('share-preview-card-title');
+    applyIosEmojis('share-preview-card-desc');
     
     // Populate Domain inside Post Preview Link Card
     const domainEl = document.getElementById('share-preview-card-domain');
@@ -187,7 +217,9 @@ function openShareModal(type, data = null) {
     // Set custom tweet text input value and preview
     const textarea = document.getElementById('share-custom-text');
     textarea.value = defaultTweetText;
-    document.getElementById('share-preview-text').textContent = defaultTweetText;
+    const previewTextEl = document.getElementById('share-preview-text');
+    previewTextEl.textContent = defaultTweetText;
+    applyIosEmojis(previewTextEl);
     
     // Setup initial intent URLs
     updateShareUrls(defaultTweetText, profileUrl);
@@ -198,7 +230,9 @@ function openShareModal(type, data = null) {
     
     newTextarea.addEventListener('input', (e) => {
         const val = e.target.value;
-        document.getElementById('share-preview-text').textContent = val;
+        const pText = document.getElementById('share-preview-text');
+        pText.textContent = val;
+        applyIosEmojis(pText);
         updateShareUrls(val, profileUrl);
     });
     
@@ -285,12 +319,17 @@ auth.onAuthStateChanged((user) => {
         // Update dashboard details
         document.getElementById('dash-sidebar-avatar').src = user.avatar;
         document.getElementById('dash-sidebar-name').textContent = user.displayName;
+        applyIosEmojis('dash-sidebar-name');
         document.getElementById('dash-sidebar-handle').textContent = `@${user.handle}`;
         applyHeaderBanner(document.getElementById('dash-sidebar-banner'), user.header);
         
         const viewPublicBtn = document.getElementById('btn-view-public-profile');
         if (viewPublicBtn) {
             viewPublicBtn.href = `#u/${user.handle}`;
+        }
+        const landingProfileBtn = document.getElementById('btn-landing-profile');
+        if (landingProfileBtn) {
+            landingProfileBtn.href = `#u/${user.handle}`;
         }
         
         // Load settings inputs
@@ -334,6 +373,11 @@ auth.onAuthStateChanged((user) => {
         // If logged out, default to owner's choice of theme
         const owner = db.getOwner();
         document.documentElement.setAttribute('data-theme', owner.theme || 'sakura');
+        
+        const landingProfileBtn = document.getElementById('btn-landing-profile');
+        if (landingProfileBtn && owner) {
+            landingProfileBtn.href = `#u/${owner.handle}`;
+        }
     }
     
     // Refresh routing to guarantee view alignment
@@ -404,8 +448,7 @@ function handleRouting() {
     
     if (hash === '#dashboard') {
         if (!auth.currentUser) {
-            window.location.hash = '#';
-            showToast("Please sign in as Owner to access the administration panel", "error");
+            auth.loginWithOwnerGoogle("rue@google.com");
             return;
         }
         document.getElementById('dashboard-view').classList.add('active');
@@ -416,8 +459,15 @@ function handleRouting() {
         document.getElementById('profile-view').classList.add('active');
         renderPublicProfile(owner);
     } else {
-        // Render welcome landing portal
+        // If site is already claimed, redirect to the profile immediately
+        const owner = db.getOwner();
+        if (owner.adminEmail) {
+            window.location.hash = `#u/${owner.handle || 'wlwruweh'}`;
+            return;
+        }
+        // Otherwise show welcome landing portal
         document.getElementById('landing-view').classList.add('active');
+        applyIosEmojis('landing-welcome-message');
     }
 }
 
@@ -586,6 +636,8 @@ function renderInbox() {
             }
         });
     });
+    
+    applyIosEmojis(container);
 }
 
 // Render answered questions under dashboard
@@ -679,6 +731,8 @@ function renderMyAnswers() {
             }
         });
     });
+    
+    applyIosEmojis(container);
 }
 
 // --- PUBLIC PROFILE VIEW ---
@@ -1063,6 +1117,12 @@ function renderPublicProfile(user) {
         quoteContainer.innerHTML = '';
     }
     
+    applyIosEmojis('pub-profile-name');
+    applyIosEmojis('pub-profile-sidebar-bio');
+    applyIosEmojis('pub-profile-slogan');
+    applyIosEmojis('pub-ask-title');
+    applyIosEmojis('quote-preview-container');
+    
     // Load public feed
     renderPublicQAFeed();
 }
@@ -1417,6 +1477,8 @@ function renderPublicQAFeed() {
             }
         });
     });
+    
+    applyIosEmojis(container);
 }
 
 // --- APP EVENT LISTENERS ---

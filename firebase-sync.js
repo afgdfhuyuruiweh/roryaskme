@@ -274,6 +274,8 @@ if (window.FIREBASE_CONFIG && window.FIREBASE_CONFIG.apiKey) {
                     window.auth.currentUser = null;
                     window.auth.notify();
                 }
+                const owner = JSON.parse(localStorage.getItem("pinkspring_owner"));
+                window.location.hash = `#u/${owner ? owner.handle : "wlwruweh"}`;
                 return;
             }
             
@@ -321,11 +323,17 @@ if (window.FIREBASE_CONFIG && window.FIREBASE_CONFIG.apiKey) {
                         window.auth.currentUser = null;
                         window.auth.notify();
                     }
+                    const owner = JSON.parse(localStorage.getItem("pinkspring_owner"));
+                    window.location.hash = `#u/${owner ? owner.handle : "wlwruweh"}`;
                     return;
                 }
             }
             localStorage.setItem("pinkspring_owner_logged_in", "true");
-            const owner = JSON.parse(localStorage.getItem("pinkspring_owner"));
+            let owner = JSON.parse(localStorage.getItem("pinkspring_owner"));
+            if (!owner && docSnap && docSnap.exists()) {
+                owner = docSnap.data();
+                localStorage.setItem("pinkspring_owner", JSON.stringify(owner));
+            }
             if (window.auth) {
                 window.auth.currentUser = owner;
                 window.auth.notify();
