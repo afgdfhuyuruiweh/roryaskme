@@ -2157,3 +2157,26 @@ img.emoji {
     vertical-align: -0.2em;
     display: inline-block;
 }
+
+/* --- Highlight Animation for Shared Q&A Card --- */
+.a-card.highlight-card {
+    animation: highlight-pulse 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes highlight-pulse {
+    0% {
+        box-shadow: 0 0 0 5px var(--accent-color);
+        border-color: var(--accent-color);
+        transform: scale(1.02);
+    }
+    30% {
+        box-shadow: 0 0 0 5px var(--accent-color);
+        border-color: var(--accent-color);
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        border-color: var(--glass-border);
+        transform: scale(1);
+    }
+}

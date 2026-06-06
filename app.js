@@ -168,6 +168,17 @@ function openShareModal(type, data = null) {
         profileUrl = `${originUrl}${window.location.pathname}#u/${user.handle}`;
     }
     
+    // Construct unique sharing URL for specific Q&A/post
+    let shareUrl = profileUrl;
+    if (type === 'qa' && data && data.id) {
+        if (originUrl === 'null' || !originUrl || originUrl.startsWith('file') || originUrl.includes('localhost')) {
+            shareUrl = `https://project-uy9hc.vercel.app/q/${data.id}`;
+        } else {
+            const originClean = originUrl.endsWith('/') ? originUrl.slice(0, -1) : originUrl;
+            shareUrl = `${originClean}/q/${data.id}`;
+        }
+    }
+    
     let defaultTweetText = '';
     let cardTitle = '';
     let cardDesc = '';
@@ -207,7 +218,7 @@ function openShareModal(type, data = null) {
     const domainEl = document.getElementById('share-preview-card-domain');
     if (domainEl) {
         try {
-            const urlObj = new URL(profileUrl);
+            const urlObj = new URL(shareUrl);
             domainEl.textContent = urlObj.hostname;
         } catch (e) {
             domainEl.textContent = 'roryaskme.netlify.app';
@@ -222,7 +233,7 @@ function openShareModal(type, data = null) {
     applyIosEmojis(previewTextEl);
     
     // Setup initial intent URLs
-    updateShareUrls(defaultTweetText, profileUrl);
+    updateShareUrls(defaultTweetText, shareUrl);
     
     // Bind real-time input to textarea to update preview & URLs live
     const newTextarea = textarea.cloneNode(true);
@@ -233,12 +244,12 @@ function openShareModal(type, data = null) {
         const pText = document.getElementById('share-preview-text');
         pText.textContent = val;
         applyIosEmojis(pText);
-        updateShareUrls(val, profileUrl);
+        updateShareUrls(val, shareUrl);
     });
     
     // Clicking the preview card opens the link
     document.querySelector('.preview-link-card').onclick = () => {
-        window.open(profileUrl, '_blank');
+        window.open(shareUrl, '_blank');
     };
     
     // Setup Copy Link action
@@ -247,8 +258,9 @@ function openShareModal(type, data = null) {
     copyBtn.parentNode.replaceChild(newCopyBtn, copyBtn);
     
     newCopyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(profileUrl).then(() => {
-            showToast("Profile link copied to clipboard!", "success");
+        navigator.clipboard.writeText(shareUrl).then(() => {
+            const successMsg = type === 'qa' ? "Q&A link copied to clipboard!" : "Profile link copied to clipboard!";
+            showToast(successMsg, "success");
             modal.classList.remove('active');
         }).catch(() => {
             showToast("Failed to copy link", "error");
@@ -456,8 +468,34 @@ function handleRouting() {
     } else if (hash.startsWith('#u/')) {
         // Render Public Profile view for a specific user handle
         const owner = db.getOwner();
+        
+        // Check if there is a target question/post ID to highlight
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetQId = urlParams.get('q');
+        if (targetQId) {
+            const targetQ = db.getQuestions().find(item => item.id === targetQId);
+            if (targetQ) {
+                // Auto switch to correct tab (Posts vs Answers) depending on target item type
+                activePublicTab = targetQ.isPost ? 'posts' : 'answers';
+            }
+        }
+        
         document.getElementById('profile-view').classList.add('active');
         renderPublicProfile(owner);
+        
+        // Highlight and scroll to the target Q&A card if it exists
+        if (targetQId) {
+            setTimeout(() => {
+                const cardEl = document.getElementById(`qa-card-public-${targetQId}`);
+                if (cardEl) {
+                    cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    cardEl.classList.add('highlight-card');
+                    setTimeout(() => {
+                        cardEl.classList.remove('highlight-card');
+                    }, 2500);
+                }
+            }, 100); // Small delay to let the DOM paint
+        }
     } else {
         // Show welcome landing portal
         document.getElementById('landing-view').classList.add('active');
