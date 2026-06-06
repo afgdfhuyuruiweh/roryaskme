@@ -1,4 +1,6 @@
 // --- CONFIG & GLOBAL STATE ---
+const DEFAULT_AVATAR = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23ffccd5'/><text x='50' y='60' font-size='40' text-anchor='middle'>🌸</text></svg>";
+const DEFAULT_HEADER = "default";
 let activeTab = 'inbox'; // inbox, answers, settings
 let tempAvatarBase64 = null;
 let tempHeaderBase64 = null;
@@ -45,8 +47,11 @@ function getVisitorSessionId() {
 // --- UTILITY: APPLY HEADER BANNER ---
 function applyHeaderBanner(element, headerVal) {
     if (!element) return;
-    const val = headerVal || "linear-gradient(45deg, #ff9a9e 0%, #fecfef 100%)";
-    if (val.startsWith('linear-gradient') || val.startsWith('radial-gradient') || val.startsWith('rgb') || val.startsWith('#')) {
+    const val = headerVal || "default";
+    if (val === 'default' || val === '') {
+        element.style.backgroundImage = 'none';
+        element.style.background = 'linear-gradient(135deg, var(--accent-soft) 0%, var(--accent-color) 100%)';
+    } else if (val.startsWith('linear-gradient') || val.startsWith('radial-gradient') || val.startsWith('rgb') || val.startsWith('#')) {
         element.style.backgroundImage = 'none';
         element.style.background = val;
     } else {
@@ -1624,6 +1629,25 @@ function setupEventListeners() {
         reader.readAsDataURL(file);
     });
 
+    // Reset Avatar & Banner Handlers
+    const btnResetAvatar = document.getElementById('btn-reset-avatar');
+    if (btnResetAvatar) {
+        btnResetAvatar.addEventListener('click', () => {
+            tempAvatarBase64 = DEFAULT_AVATAR;
+            document.getElementById('preview-avatar-img').src = DEFAULT_AVATAR;
+            showToast("Reset to default avatar (click Save to apply)", "info");
+        });
+    }
+
+    const btnResetHeader = document.getElementById('btn-reset-header');
+    if (btnResetHeader) {
+        btnResetHeader.addEventListener('click', () => {
+            tempHeaderBase64 = DEFAULT_HEADER;
+            applyHeaderBanner(document.getElementById('preview-header-img'), DEFAULT_HEADER);
+            showToast("Reset to default banner (click Save to apply)", "info");
+        });
+    }
+
     // Save Profile Settings
     document.getElementById('btn-save-settings').addEventListener('click', () => {
         const displayName = document.getElementById('settings-display-name').value.trim();
@@ -1649,7 +1673,7 @@ function setupEventListeners() {
         }
         
         const avatar = tempAvatarBase64 || auth.currentUser.avatar;
-        const header = tempHeaderBase64 || auth.currentUser.header || "linear-gradient(45deg, #ff9a9e 0%, #fecfef 100%)";
+        const header = tempHeaderBase64 || auth.currentUser.header || "default";
         const askPrompt = document.getElementById('settings-ask-prompt').value.trim();
         const askPlaceholder = document.getElementById('settings-ask-placeholder').value.trim();
         
