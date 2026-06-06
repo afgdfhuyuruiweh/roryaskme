@@ -1,0 +1,10 @@
+{
+  "name": "roryaskme",
+  "version": "1.0.0",
+  "description": "Personal Q&A space",
+  "main": "app.js",
+  "scripts": {
+    "start": "echo 'No start script needed for static deployment'"
+  },
+  "dependencies": {}
+}
