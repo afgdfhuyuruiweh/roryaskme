@@ -459,13 +459,7 @@ function handleRouting() {
         document.getElementById('profile-view').classList.add('active');
         renderPublicProfile(owner);
     } else {
-        // If site is already claimed, redirect to the profile immediately
-        const owner = db.getOwner();
-        if (owner.adminEmail) {
-            window.location.hash = `#u/${owner.handle || 'wlwruweh'}`;
-            return;
-        }
-        // Otherwise show welcome landing portal
+        // Show welcome landing portal
         document.getElementById('landing-view').classList.add('active');
         applyIosEmojis('landing-welcome-message');
     }

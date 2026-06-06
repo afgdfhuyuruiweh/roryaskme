@@ -198,5 +198,3 @@ export default async function handler(req, res) {
 }
 ```
 Using this setup, social platforms will display the dynamic clickable card preview containing your specific profile photo and the exact Q&A response, while users are instantly routed to your pink profile dashboard!
-
-Deploy
