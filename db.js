@@ -6,7 +6,7 @@ const DEFAULT_OWNER = {
     displayName: "rue",
     avatar: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23ffccd5'/><text x='50' y='60' font-size='40' text-anchor='middle'>🌸</text></svg>",
     header: "linear-gradient(45deg, #ff9a9e 0%, #fecfef 100%)",
-    bio: "From the moment humanity left the universe, we all forgot about God. But if belief in God is human. If all I can do as a human is to believe... My God, my universe.",
+    bio: "⊹₊˚‧︵‿₊୨ᰔ Roryaskme! ᰔ ୧₊‿︵‧˚₊⊹\n╰┈➤ Rue’s official digital fallout shelter.\n\n.ᐟ Welcome! I’m Rue—part-time AU enthusiast, full-time struggling uni student, and professional multi-shipper XD. 𐔌՞. .՞𐦯 I spend 90% of my time writing alternative universes and 10% fighting for my life sa uni para lang tumagos. My shipping tastes are \"yes,\" and my fandoms are \"all of them.\"\n\n⤹⤷ System Log: This page is my digital fallout shelter in case revospring pulls a cc and crashes permanently, since the internet loves deleting our favorite Q&A sites. Feed my inbox with prompts, questions, or your favorite ships before the servers realize I'm here! 𑣲⋆",
     sidebarBio: "rue 20+\nshe/her\nhonyeitsu on tiktok\nwriting only for every ship that i love",
     website: "x.com",
     askPrompt: "Type your question here...",

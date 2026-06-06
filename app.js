@@ -176,7 +176,7 @@ function openShareModal(type, data = null) {
     let profileUrl;
     let originUrl = window.location.origin;
     if (originUrl === 'null' || !originUrl || originUrl.startsWith('file') || originUrl.includes('localhost')) {
-        profileUrl = `https://roryaskme.netlify.app/#u/${user.handle}`;
+        profileUrl = `https://roryaskme.vercel.app/#u/${user.handle}`;
     } else {
         profileUrl = `${originUrl}${window.location.pathname}#u/${user.handle}`;
     }
@@ -185,7 +185,7 @@ function openShareModal(type, data = null) {
     let shareUrl = profileUrl;
     if (type === 'qa' && data && data.id) {
         if (originUrl === 'null' || !originUrl || originUrl.startsWith('file') || originUrl.includes('localhost')) {
-            shareUrl = `https://project-uy9hc.vercel.app/q/${data.id}`;
+            shareUrl = `https://roryaskme.vercel.app/q/${data.id}`;
         } else {
             const originClean = originUrl.endsWith('/') ? originUrl.slice(0, -1) : originUrl;
             shareUrl = `${originClean}/q/${data.id}`;
