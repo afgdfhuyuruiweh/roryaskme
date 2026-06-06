@@ -1,5 +1,5 @@
 // Vercel Serverless Function to serve dynamic crawler metadata for individual Q&As and posts
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     const { id } = req.query;
     
     // Default metadata values
