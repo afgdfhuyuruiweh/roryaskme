@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cyber">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ask rue! - Personal Q&A Space</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ask rue! Q&A">
+    <meta property="og:description" content="Ask me questions anonymously or publicly! 🌸">
+    <meta property="og:image" content="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23ffccd5'/><text x='50' y='60' font-size='40' text-anchor='middle'>🌸</text></svg>">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ask rue! Q&A">
+    <meta name="twitter:description" content="Ask me questions anonymously or publicly! 🌸">
+    <meta name="twitter:image" content="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23ffccd5'/><text x='50' y='60' font-size='40' text-anchor='middle'>🌸</text></svg>">
+</head>
+<body>
+
+    <!-- STICKY NAVBAR -->
+    <header class="app-header">
+        <div class="nav-container">
+            <a href="#" class="logo-link">
+                <!-- Premium SVG Pinkspring Logo -->
+                <svg class="logo-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M50 90C50 90 90 60 90 35C90 15.67 74.33 0 55 0C47.28 0 40.17 2.5 34.45 6.74C30.2 2.5 24.28 0 17.78 0C7.96 0 0 7.96 0 17.78C0 27.6 15 50 35.56 70L50 90Z" fill="currentColor"/>
+                    <path d="M50 90C50 90 60 70 65 55C70 40 70 30 65 25C60 20 53 25 50 35C47 25 40 20 35 25C30 30 30 40 35 55C40 70 50 90 50 90Z" fill="#fff" opacity="0.8"/>
+                </svg>
+                <span>ask rue!</span>
+            </a>
+            
+            <nav class="nav-links" id="nav-auth-container">
+                <!-- Dynamic auth layout injected here -->
+                <button class="btn-primary btn-sm" id="btn-login-trigger">
+                    <span>sign in as rue</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN APP SCREEN CONTAINER -->
+    <main class="app-main">
+
+        <!-- 0. WELCOME LANDING VIEW -->
+        <section id="landing-view" class="page-view">
+            <div class="landing-container glass-panel" style="max-width: 650px; margin: 40px auto; padding: 40px; text-align: center; border-radius: 24px;">
+                <div style="font-size: 3rem; margin-bottom: 20px;">🌸</div>
+                <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 24px; color: var(--text-primary);">Roryaskme!</h1>
+                
+                <div id="landing-welcome-message" style="font-size: 1.1rem; line-height: 1.65; margin-bottom: 32px; color: var(--text-primary); text-align: left; white-space: pre-wrap; font-weight: 500; border-left: 5px solid var(--accent-color); padding-left: 20px; background: rgba(255,255,255,0.02); padding: 16px 20px; border-radius: 12px; border: 1px solid var(--glass-border); border-left: 5px solid var(--accent-color);">🌸 Roryaskme! 🌸
+This is the personal Q&A site of Rue!
+
+Hello! I'm Rue, a passionate AU writer who sometimes plays around with code. 💖 I'm a multi-shipper who loves many ships and a fan of so many different things!
+
+Note: This page serves as a backup for my revospring account, just in case it shutdowns (like what happened to Curious Cat!). Feel free to ask me anything here! 🎀</div>
+                
+                <div style="margin-top: 30px; display: flex; flex-direction: column; align-items: center; gap: 12px;">
+                    <button class="btn-primary" id="btn-landing-login" style="padding: 12px 36px; font-size: 1.1rem; border-radius: 30px; font-weight: 700; cursor: pointer; transition: all 0.2s;">
+                        sign in as rue
+                    </button>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 8px; font-weight: 600;">
+                        ✨ The first Google account to sign in will claim sole ownership of this Roryaskme Q&A space.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. PUBLIC PROFILE VIEW (DEFAULT HOME FOR VISITORS) -->
+        <section id="profile-view" class="page-view">
+            <div class="public-profile-header">
+                <!-- Large Header Banner spanning full width of the wrapper -->
+                <div class="profile-banner-container">
+                    <div class="profile-banner" id="pub-profile-banner"></div>
+                </div>
+            </div>
+            
+            <div class="public-profile-grid-container">
+                <div class="public-profile-grid">
+                    
+                    <!-- Left Column: Sidebar Details -->
+                    <aside class="profile-sidebar-column">
+                        <div class="profile-sidebar-card glass-panel">
+                            <!-- Avatar overlaps banner -->
+                            <img src="" alt="Avatar" class="avatar-square" id="pub-profile-avatar">
+                            
+                            <h1 id="pub-profile-name">rue</h1>
+                            <p class="handle" id="pub-profile-handle">@wlwruweh</p>
+                            
+                            <!-- Left sidebar bio details (multi-line) -->
+                            <div class="sidebar-bio-details" id="pub-profile-sidebar-bio">
+                                <!-- Multi-line bio details -->
+                            </div>
+                            
+                            <!-- Website link -->
+                            <div class="sidebar-link-row" id="pub-profile-link-row">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                </svg>
+                                <a href="https://x.com" target="_blank" id="pub-profile-website">x.com</a>
+                            </div>
+                            
+                            <!-- Actions: Edit Profile (if owner) or Share Profile (always) -->
+                            <div class="sidebar-action-buttons" style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+                                <a href="#dashboard" class="btn-primary btn-sm" id="btn-sidebar-edit" style="display: none; width: 100%; text-decoration: none; text-align: center; justify-content: center; align-items: center; border-radius: 20px; font-weight: 700; height: 38px;">Edit profile</a>
+                                <button class="btn-secondary btn-sm" id="btn-share-profile" style="width: 100%; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 700; height: 38px; cursor: pointer;">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/>
+                                    </svg>
+                                    <span>Share Profile</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Socials / Contact Box -->
+                        <div class="profile-sidebar-card glass-panel" id="pub-socials-card" style="margin-top: 16px; padding: 20px; display: none;">
+                            <h3 style="font-size: 0.85rem; font-weight: 800; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.7px; color: var(--text-secondary); border-bottom: 1px solid var(--glass-border); padding-bottom: 8px;">Find Me On</h3>
+                            <div style="display: flex; flex-direction: column; gap: 10px;" id="pub-socials-container">
+                                <!-- Dynamic social link rows here -->
+                            </div>
+                        </div>
+                    </aside>
+                    
+                    <!-- Right Column: Main Feed -->
+                    <div class="profile-main-column">
+                        
+                        <!-- Slogan Box -->
+                        <div class="slogan-box glass-panel" id="pub-profile-slogan">
+                            <!-- slogan text -->
+                        </div>
+                        
+                        <div class="ask-box glass-panel" id="pub-ask-box-container" style="border-radius: 16px;">
+                            <h3 id="pub-ask-title" style="font-size: 1.05rem; font-weight: 800; margin-bottom: 12px; color: var(--text-primary); text-align: left;">Ask me anything! 🎀</h3>
+                            <!-- Ask Box Mode Tabs (only visible when owner is logged in) -->
+                            <div id="ask-box-modes" style="display: none; gap: 16px; margin-bottom: 16px; border-bottom: 1px solid var(--glass-border); padding-bottom: 10px;">
+                                <button class="ask-mode-btn active" id="mode-write-post" style="background: none; border: none; color: var(--accent-color); font-weight: 700; cursor: pointer; font-size: 0.9rem;">Write Post</button>
+                                <button class="ask-mode-btn" id="mode-ask-question" style="background: none; border: none; color: var(--text-secondary); font-weight: 600; cursor: pointer; font-size: 0.9rem;">Ask Question</button>
+                            </div>
+
+                            <div id="quote-preview-container" style="display: none; margin-bottom: 12px;"></div>
+                            
+                            <textarea id="pub-ask-textarea" class="input-field" placeholder="Type your question here..." style="min-height: 80px; border: none; background: transparent; padding: 0; box-shadow: none; resize: none; margin-bottom: 12px;"></textarea>
+                            
+                            <!-- Name Wrapper (slides down) -->
+                            <div id="pub-ask-name-wrapper" style="display: none; margin-bottom: 12px; animation: slideDown 0.25s ease forwards; text-align: left;">
+                                <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px; color: var(--text-primary);">Your Name / Handle (Optional)</label>
+                                <input type="text" id="pub-ask-name" class="input-field" placeholder="e.g. Friend, @username" style="margin-bottom: 0;">
+                            </div>
+                            
+                            <div class="ask-options" style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--glass-border); padding-top: 12px;">
+                                <label class="checkbox-label" id="label-ask-anon" style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem; cursor: pointer; color: var(--text-secondary);">
+                                    <input type="checkbox" id="checkbox-ask-anon" checked style="accent-color: var(--accent-color);">
+                                    <span>Hide your name</span>
+                                </label>
+                                
+                                <button class="btn-pill" id="btn-submit-question" style="background: var(--accent-color); color: #fff; border: none; padding: 8px 24px; border-radius: 20px; font-weight: 700; cursor: pointer; transition: background 0.2s;">Ask</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Tabs Bar -->
+                        <div class="profile-tabs-bar glass-panel" style="display: flex; border-radius: 12px; overflow: hidden; margin-bottom: 20px; padding: 0;">
+                            <button class="tab-item active" id="tab-answers" style="flex: 1; padding: 12px 8px; border: none; background: var(--accent-color); color: #fff; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                                <span>Answers</span> <span class="tab-badge" id="tab-badge-answers" style="background: rgba(255,255,255,0.25); color: #fff; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem;">0</span>
+                            </button>
+                            <button class="tab-item" id="tab-posts" style="flex: 1; padding: 12px 8px; border: none; background: transparent; color: var(--text-secondary); font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                                <span>Posts</span> <span class="tab-badge" id="tab-badge-posts" style="background: var(--accent-soft); color: var(--text-primary); padding: 2px 8px; border-radius: 10px; font-size: 0.75rem;">0</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Answered Feed -->
+                        <div class="explore-grid" id="pub-answered-container" style="display: flex; flex-direction: column; gap: 16px;">
+                            <!-- Public Q&As list -->
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 2. OWNER DASHBOARD VIEW (OWNER ONLY, SIGNED IN) -->
+        <section id="dashboard-view" class="page-view">
+            <div class="dashboard-grid">
+                
+                <!-- Sidebar Summary -->
+                <aside class="dashboard-sidebar">
+                    <div class="profile-summary glass-panel">
+                        <div class="profile-banner" id="dash-sidebar-banner"></div>
+                        <img src="" alt="Avatar" class="avatar" id="dash-sidebar-avatar">
+                        <h2 id="dash-sidebar-name">Loading...</h2>
+                        <p class="handle" id="dash-sidebar-handle">@loading</p>
+                        
+                        <div class="profile-stats">
+                            <div class="stat-box">
+                                <span class="val" id="dash-stat-answers">0</span>
+                                <span class="lbl">Answered</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="val" id="dash-stat-posts">0</span>
+                                <span class="lbl">Posts</span>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <a href="#" id="btn-view-public-profile" class="btn-primary btn-sm" style="width: 100%;">View Public Page</a>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-menu glass-panel">
+                        <button class="active" id="btn-dash-inbox">
+                            <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5v-3h3.56c.69 1.19 1.97 2 3.44 2s2.75-.81 3.44-2H19v3zm0-5h-4.87c-.42.61-1.11 1-1.88 1s-1.46-.39-1.88-1H5V5h14v9z"/></svg>
+                            <span>Inbox</span>
+                            <span class="badge-count" id="badge-inbox-count">0</span>
+                        </button>
+                        
+                        <button id="btn-dash-answers">
+                            <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                            <span>My Q&As</span>
+                        </button>
+                        
+                        <button id="btn-dash-settings">
+                            <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+                            <span>Profile & Theme</span>
+                        </button>
+                    </div>
+                </aside>
+                
+                <!-- Main Dashboard Sections -->
+                <div class="dashboard-content">
+                    
+                    <!-- A. Inbox Tab -->
+                    <div id="dash-section-inbox" class="dash-content-section active">
+                        <div class="section-header">
+                            <h2>Questions Inbox</h2>
+                        </div>
+                        <div class="questions-list" id="inbox-questions-container">
+                            <!-- Injected by app.js -->
+                        </div>
+                    </div>
+                    
+                    <!-- B. My Answers Tab -->
+                    <div id="dash-section-answers" class="dash-content-section">
+                        <div class="section-header">
+                            <h2>My Answered Q&As</h2>
+                        </div>
+                        <div class="questions-list" id="answered-questions-container">
+                            <!-- Injected by app.js -->
+                        </div>
+                    </div>
+                    
+                    <!-- C. Settings Tab -->
+                    <div id="dash-section-settings" class="dash-content-section">
+                        <div class="section-header">
+                            <h2>Profile Settings</h2>
+                        </div>
+                        
+                        <div class="settings-form glass-panel" style="padding: 30px;">
+                            <div class="form-group">
+                                <label for="settings-display-name">Display Name</label>
+                                <input type="text" id="settings-display-name" class="input-field" placeholder="e.g. rue ✨">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="settings-handle">Username / Handle</label>
+                                <input type="text" id="settings-handle" class="input-field" placeholder="username">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Profile Picture</label>
+                                <div class="file-input-wrapper">
+                                    <img id="preview-avatar-img" class="image-preview-circle" src="">
+                                    <label class="file-input-label">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                                        <span>Choose Photo...</span>
+                                        <input type="file" id="settings-avatar-file" accept="image/*">
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Profile Header Banner</label>
+                                <div class="file-input-wrapper">
+                                    <div id="preview-header-img" class="image-preview-banner"></div>
+                                    <label class="file-input-label">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+                                        <span>Choose Banner...</span>
+                                        <input type="file" id="settings-header-file" accept="image/*">
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="settings-bio">About Slogan (Top Box)</label>
+                                <textarea id="settings-bio" class="input-field" placeholder="Tell the world about yourself..." style="min-height: 80px;"></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="settings-sidebar-bio">Sidebar Info (Left Column)</label>
+                                <textarea id="settings-sidebar-bio" class="input-field" placeholder="e.g. rue 20+&#10;she/her&#10;honyeitsu on tiktok" style="min-height: 80px;"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settings-website">Website Link</label>
+                                <input type="text" id="settings-website" class="input-field" placeholder="e.g. x.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settings-twitter">Twitter Handle / Link 1</label>
+                                <input type="text" id="settings-twitter" class="input-field" placeholder="e.g. wlwruweh">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settings-twitter2">Twitter Handle / Link 2 (Optional)</label>
+                                <input type="text" id="settings-twitter2" class="input-field" placeholder="e.g. wlwruweh_alt">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settings-tiktok">TikTok Handle / Link 1</label>
+                                <input type="text" id="settings-tiktok" class="input-field" placeholder="e.g. honyeitsu">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settings-tiktok2">TikTok Handle / Link 2 (Optional)</label>
+                                <input type="text" id="settings-tiktok2" class="input-field" placeholder="e.g. honyeitsu_alt">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settings-discord">Discord Username / Tag 1</label>
+                                <input type="text" id="settings-discord" class="input-field" placeholder="e.g. rue#1234">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settings-discord2">Discord Username / Tag 2 (Optional)</label>
+                                <input type="text" id="settings-discord2" class="input-field" placeholder="e.g. rue_alt#5678">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settings-discord-server">Discord Server Invite Link</label>
+                                <input type="text" id="settings-discord-server" class="input-field" placeholder="e.g. discord.gg/invite">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settings-ao3">AO3 Profile / Username</label>
+                                <input type="text" id="settings-ao3" class="input-field" placeholder="e.g. rue_writes">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="settings-ask-prompt">Custom Ask Box Title</label>
+                                <input type="text" id="settings-ask-prompt" class="input-field" placeholder="e.g. Ask me anything! 🎀">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="settings-ask-placeholder">Custom Textarea Placeholder</label>
+                                <input type="text" id="settings-ask-placeholder" class="input-field" placeholder="e.g. Type your question here... Be nice!">
+                            </div>
+                            
+                            <div class="switch-row">
+                                <div>
+                                    <h4 style="font-weight: 600;">Allow Anonymous Questions</h4>
+                                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Unregistered users will be able to ask you questions.</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" id="settings-allow-anon">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Select Theme Palette</label>
+                                <div class="theme-selector-grid">
+                                    <div class="theme-card glass-panel active" data-theme-id="sakura">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Sakura Soft (Light)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #ffeef2;"></div>
+                                            <div class="color-dot" style="background: #ff69b4;"></div>
+                                            <div class="color-dot" style="background: #ffe4e1;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="bubblegum">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Bubblegum Pop (Bright)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #fff0f6;"></div>
+                                            <div class="color-dot" style="background: #ff1493;"></div>
+                                            <div class="color-dot" style="background: #ffccd8;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="cyber">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Cyber Magenta (Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #0f050b;"></div>
+                                            <div class="color-dot" style="background: #ff2a85;"></div>
+                                            <div class="color-dot" style="background: rgba(255, 42, 133, 0.15);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="rose-quartz">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Rose Quartz (Warm Dark)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #1f1418;"></div>
+                                            <div class="color-dot" style="background: #eb96af;"></div>
+                                            <div class="color-dot" style="background: rgba(235, 150, 175, 0.15);"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="ballet-slipper">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Ballet Slipper (Pale)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #fff5f6;"></div>
+                                            <div class="color-dot" style="background: #f4c2c2;"></div>
+                                            <div class="color-dot" style="background: #fff0f0;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="strawberry-milk">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Strawberry Milk (Pastel)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #fff2f5;"></div>
+                                            <div class="color-dot" style="background: #ff85a1;"></div>
+                                            <div class="color-dot" style="background: #ffe5ec;"></div>
+                                        </div>
+                                    </div>
+                                    <div class="theme-card glass-panel" data-theme-id="hot-magenta">
+                                        <div style="font-weight: 700; font-size: 0.95rem;">Hot Magenta (Neon)</div>
+                                        <div class="theme-palette">
+                                            <div class="color-dot" style="background: #2b001a;"></div>
+                                            <div class="color-dot" style="background: #ff007f;"></div>
+                                            <div class="color-dot" style="background: rgba(255, 0, 127, 0.12);"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 10px;">
+                                <button class="btn-primary" id="btn-save-settings">Save Settings</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 40px 0; color: var(--text-secondary); font-size: 0.9rem; border-top: 1px solid var(--glass-border); margin-top: 80px; background: rgba(0, 0, 0, 0.02);">
+        <p>&copy; 2026 Roryaskme Q&A Personal Space. Built with love and pink aesthetics.</p>
+        <p style="margin-top: 8px;"><a href="#" id="owner-footer-login" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">sign in as rue</a></p>
+    </footer>
+
+    <!-- SHARE MODAL -->
+    <div class="modal-overlay" id="share-modal">
+        <div class="modal-content glass-panel" style="max-width: 440px;">
+            <div style="display: flex; justify-content: flex-end;">
+                <button id="btn-close-share-modal" style="background:transparent; border:none; cursor:pointer; color: var(--text-secondary);">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <h2 id="share-modal-title" style="margin-bottom: 4px; font-weight: 800;">Share Q&A Answer</h2>
+            <p id="share-modal-subtitle" style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 12px;">Customize your tweet text and share this answer</p>
+            
+            <!-- Custom Tweet Input -->
+            <div style="text-align: left; margin-bottom: 12px;">
+                <label for="share-custom-text" style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.5px;">Your Tweet Text</label>
+                <textarea id="share-custom-text" class="input-field" placeholder="Write something to tweet..." style="min-height: 60px; margin-bottom: 0; font-size: 0.9rem; resize: vertical; padding: 8px 12px;"></textarea>
+            </div>
+            
+            <!-- Simulated X (Twitter) Post Preview Card -->
+            <div class="social-preview-wrap glass-panel" style="margin: 15px 0; padding: 16px; text-align: left; background: #000; border-color: rgba(255, 255, 255, 0.15); color: #fff; border-radius: 16px;">
+                <p style="font-size: 0.75rem; color: #8899A6; font-weight: 700; margin-bottom: 10px; letter-spacing: 0.5px; text-transform: uppercase;">X (Twitter) Post Preview</p>
+                <div style="display: flex; gap: 10px;">
+                    <img id="share-preview-avatar" src="" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1);">
+                    <div style="flex-grow: 1; min-width: 0;">
+                        <div style="display: flex; gap: 4px; align-items: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            <span id="share-preview-name" style="font-weight: 700; font-size: 0.9rem; color: #fff;">Name</span>
+                            <span id="share-preview-handle" style="color: #8899A6; font-size: 0.8rem;">@handle</span>
+                            <span style="color: #8899A6; font-size: 0.8rem;">· Just now</span>
+                        </div>
+                        <p id="share-preview-text" style="font-size: 0.9rem; color: #fff; margin: 4px 0 10px 0; line-height: 1.4; word-break: break-word; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;"></p>
+                        
+                        <!-- Clickable Summary Link Card Preview -->
+                        <div class="preview-link-card" style="display: flex; border: 1px solid #2F3336; border-radius: 12px; overflow: hidden; background: #000; cursor: pointer; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; text-align: left;">
+                            <div id="share-preview-card-banner" style="width: 100px; height: 100px; background-size: cover; background-position: center; flex-shrink: 0; background-color: #ffb6c1; border-right: 1px solid #2F3336;"></div>
+                            <div style="padding: 10px 12px; display: flex; flex-direction: column; justify-content: center; line-height: 1.35; min-width: 0; flex-grow: 1;">
+                                <div id="share-preview-card-domain" style="color: #8899A6; font-size: 0.72rem; text-transform: lowercase;">roryaskme.netlify.app</div>
+                                <div id="share-preview-card-title" style="color: #fff; font-weight: 700; font-size: 0.85rem; margin-top: 2px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; word-break: break-word;"></div>
+                                <div id="share-preview-card-desc" style="color: #8899A6; font-size: 0.78rem; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="share-options-list">
+                <button class="share-opt-btn" id="share-opt-copy">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <span>Copy Profile Link</span>
+                </button>
+                <a href="" target="_blank" class="share-opt-btn" id="share-opt-twitter">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    <span>Share on X / Twitter</span>
+                </a>
+                <a href="" target="_blank" class="share-opt-btn" id="share-opt-bluesky">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 600 530"><path d="M100 50C190 80 270 170 300 220C330 170 410 80 500 50C590 20 630 60 590 150C560 220 490 340 430 380C340 440 310 410 300 400C290 410 260 440 170 380C110 340 40 220 10 150C-30 60 10 20 100 50Z"/></svg>
+                    <span>Share on Bluesky</span>
+                </a>
+                <a href="" target="_blank" class="share-opt-btn" id="share-opt-facebook">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    <span>Share on Facebook</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toast-container" class="toast">
+        <span id="toast-message">Message here</span>
+    </div>
+
+    <!-- Firebase Real-time Connectors -->
+    <script src="firebase-config.js"></script>
+    <script type="module" src="firebase-sync.js"></script>
+
+    <!-- MAIN LOGIC SCRIPTS -->
+    <script src="db.js"></script>
+    <script src="auth.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
