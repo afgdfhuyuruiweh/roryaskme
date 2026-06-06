@@ -142,13 +142,26 @@ function isQuestionAnonymous(q) {
     return !q.senderName || q.senderName === "Anonymous" || q.senderName.toLowerCase().startsWith("anon");
 }
 
+// --- UTILITY: APPEND QUERY PARAMETER ---
+function appendQueryParam(url, key, value) {
+    const hashIndex = url.indexOf('#');
+    const hash = hashIndex !== -1 ? url.substring(hashIndex) : '';
+    const baseUrl = hashIndex !== -1 ? url.substring(0, hashIndex) : url;
+    
+    const separator = baseUrl.includes('?') ? '&' : '?';
+    return `${baseUrl}${separator}${key}=${value}${hash}`;
+}
+
 // --- UTILITY: UPDATE SHARE LINKS ---
 function updateShareUrls(tweetText, profileUrl) {
+    // Automatically append cache-busting query parameter for social media shares
+    const shareUrlForTwt = appendQueryParam(profileUrl, 'v', '3');
+    
     const twitterLink = document.getElementById('share-opt-twitter');
-    twitterLink.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(profileUrl)}`;
+    twitterLink.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareUrlForTwt)}`;
     
     const bskyLink = document.getElementById('share-opt-bluesky');
-    bskyLink.href = `https://bsky.app/intent/compose?text=${encodeURIComponent(tweetText + ' ' + profileUrl)}`;
+    bskyLink.href = `https://bsky.app/intent/compose?text=${encodeURIComponent(tweetText + ' ' + shareUrlForTwt)}`;
     
     const fbLink = document.getElementById('share-opt-facebook');
     fbLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(profileUrl)}`;
@@ -258,7 +271,8 @@ function openShareModal(type, data = null) {
     copyBtn.parentNode.replaceChild(newCopyBtn, copyBtn);
     
     newCopyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(shareUrl).then(() => {
+        const copyUrl = appendQueryParam(shareUrl, 'v', '3');
+        navigator.clipboard.writeText(copyUrl).then(() => {
             const successMsg = type === 'qa' ? "Q&A link copied to clipboard!" : "Profile link copied to clipboard!";
             showToast(successMsg, "success");
             modal.classList.remove('active');
