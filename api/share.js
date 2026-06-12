@@ -14,14 +14,40 @@ module.exports = async function handler(req, res) {
                 if (avatar) {
                     const avatarVal = fields?.avatar?.stringValue || "";
                     if (avatarVal.startsWith('data:image/')) {
-                        const matches = avatarVal.match(/^data:([a-zA-Z0-9]+\/[a-zA-Z0-9-+.]+);base64,(.+)$/);
-                        if (matches && matches.length === 3) {
-                            const contentType = matches[1];
-                            const base64Data = matches[2];
-                            const imgBuffer = Buffer.from(base64Data, 'base64');
-                            res.setHeader("Content-Type", contentType);
-                            res.setHeader("Cache-Control", "public, max-age=3600"); // Cache for 1 hour to prevent excessive database hits
-                            return res.status(200).send(imgBuffer);
+                        if (avatarVal.includes(';base64,')) {
+                            const parts = avatarVal.split(';base64,');
+                            if (parts.length === 2) {
+                                const contentType = parts[0].replace('data:', '');
+                                const base64Data = parts[1].replace(/\s/g, '');
+                                const imgBuffer = Buffer.from(base64Data, 'base64');
+                                res.setHeader("Content-Type", contentType);
+                                res.setHeader("Cache-Control", "public, max-age=3600"); // Cache for 1 hour to prevent excessive database hits
+                                return res.status(200).send(imgBuffer);
+                            }
+                        } else if (avatarVal.includes(';utf8,') || avatarVal.includes(';utf-8,') || avatarVal.includes(',')) {
+                            let contentType = 'image/svg+xml';
+                            let svgText = '';
+                            if (avatarVal.includes(';utf8,')) {
+                                const parts = avatarVal.split(';utf8,');
+                                contentType = parts[0].replace('data:', '');
+                                svgText = decodeURIComponent(parts[1]);
+                            } else if (avatarVal.includes(';utf-8,')) {
+                                const parts = avatarVal.split(';utf-8,');
+                                contentType = parts[0].replace('data:', '');
+                                svgText = decodeURIComponent(parts[1]);
+                            } else {
+                                const commaIdx = avatarVal.indexOf(',');
+                                if (commaIdx !== -1) {
+                                    const prefix = avatarVal.substring(0, commaIdx);
+                                    contentType = prefix.replace('data:', '').split(';')[0];
+                                    svgText = decodeURIComponent(avatarVal.substring(commaIdx + 1));
+                                }
+                            }
+                            if (svgText) {
+                                res.setHeader("Content-Type", contentType);
+                                res.setHeader("Cache-Control", "public, max-age=3600");
+                                return res.status(200).send(svgText);
+                            }
                         }
                     } else if (avatarVal.startsWith('http')) {
                         return res.redirect(302, avatarVal);
@@ -33,14 +59,40 @@ module.exports = async function handler(req, res) {
                 if (header) {
                     const headerVal = fields?.header?.stringValue || "";
                     if (headerVal.startsWith('data:image/')) {
-                        const matches = headerVal.match(/^data:([a-zA-Z0-9]+\/[a-zA-Z0-9-+.]+);base64,(.+)$/);
-                        if (matches && matches.length === 3) {
-                            const contentType = matches[1];
-                            const base64Data = matches[2];
-                            const imgBuffer = Buffer.from(base64Data, 'base64');
-                            res.setHeader("Content-Type", contentType);
-                            res.setHeader("Cache-Control", "public, max-age=3600"); // Cache for 1 hour
-                            return res.status(200).send(imgBuffer);
+                        if (headerVal.includes(';base64,')) {
+                            const parts = headerVal.split(';base64,');
+                            if (parts.length === 2) {
+                                const contentType = parts[0].replace('data:', '');
+                                const base64Data = parts[1].replace(/\s/g, '');
+                                const imgBuffer = Buffer.from(base64Data, 'base64');
+                                res.setHeader("Content-Type", contentType);
+                                res.setHeader("Cache-Control", "public, max-age=3600"); // Cache for 1 hour
+                                return res.status(200).send(imgBuffer);
+                            }
+                        } else if (headerVal.includes(';utf8,') || headerVal.includes(';utf-8,') || headerVal.includes(',')) {
+                            let contentType = 'image/svg+xml';
+                            let svgText = '';
+                            if (headerVal.includes(';utf8,')) {
+                                const parts = headerVal.split(';utf8,');
+                                contentType = parts[0].replace('data:', '');
+                                svgText = decodeURIComponent(parts[1]);
+                            } else if (headerVal.includes(';utf-8,')) {
+                                const parts = headerVal.split(';utf-8,');
+                                contentType = parts[0].replace('data:', '');
+                                svgText = decodeURIComponent(parts[1]);
+                            } else {
+                                const commaIdx = headerVal.indexOf(',');
+                                if (commaIdx !== -1) {
+                                    const prefix = headerVal.substring(0, commaIdx);
+                                    contentType = prefix.replace('data:', '').split(';')[0];
+                                    svgText = decodeURIComponent(headerVal.substring(commaIdx + 1));
+                                }
+                            }
+                            if (svgText) {
+                                res.setHeader("Content-Type", contentType);
+                                res.setHeader("Cache-Control", "public, max-age=3600");
+                                return res.status(200).send(svgText);
+                            }
                         }
                     } else if (headerVal.startsWith('http')) {
                         return res.redirect(302, headerVal);
