@@ -160,7 +160,7 @@ function appendQueryParam(url, key, value) {
 // --- UTILITY: UPDATE SHARE LINKS ---
 function updateShareUrls(tweetText, profileUrl) {
     // Automatically append cache-busting query parameter for social media shares
-    const shareUrlForTwt = appendQueryParam(profileUrl, 'v', '3');
+    const shareUrlForTwt = appendQueryParam(profileUrl, 'v', '4');
     
     const twitterLink = document.getElementById('share-opt-twitter');
     twitterLink.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=${encodeURIComponent(shareUrlForTwt)}`;
@@ -276,7 +276,7 @@ function openShareModal(type, data = null) {
     copyBtn.parentNode.replaceChild(newCopyBtn, copyBtn);
     
     newCopyBtn.addEventListener('click', () => {
-        const copyUrl = appendQueryParam(shareUrl, 'v', '3');
+        const copyUrl = appendQueryParam(shareUrl, 'v', '4');
         navigator.clipboard.writeText(copyUrl).then(() => {
             const successMsg = type === 'qa' ? "Q&A link copied to clipboard!" : "Profile link copied to clipboard!";
             showToast(successMsg, "success");
